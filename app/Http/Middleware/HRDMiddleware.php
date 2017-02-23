@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Auth;
 class HRDMiddleware
 {
     /**
@@ -15,6 +15,14 @@ class HRDMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::check() && Auth::user()->permission == "Admin")
+        { 
+            return $next($request);
+        }
+        else if (Auth::check() && Auth::user()->permission == "HRD")
+        { 
+            return $next($request);
+        }
+        return redirect('/pageAksesKhusus');
     }
 }

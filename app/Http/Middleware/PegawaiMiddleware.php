@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Auth;
 class PegawaiMiddleware
 {
     /**
@@ -15,6 +15,22 @@ class PegawaiMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+            if (Auth::check() && Auth::user()->permission == "Admin")
+        { 
+            return $next($request);
+        }
+        else if (Auth::check() && Auth::user()->permission == "HRD")
+        { 
+            return $next($request);
+        }
+        else if (Auth::check() && Auth::user()->permission == "Adrimistrasi")
+        { 
+            return $next($request);
+        }
+        else if (Auth::check() && Auth::user()->permission == "Pegawai")
+        { 
+            return $next($request);
+        }
+        retudn redirect('pageAksesKhusus');
     }
 }

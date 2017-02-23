@@ -19,7 +19,7 @@ class PegawaiController extends Controller
      * @return \Illuminate\Http\Response
      */
 use RegistersUsers;
- public function __construct()
+public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('HRD');
