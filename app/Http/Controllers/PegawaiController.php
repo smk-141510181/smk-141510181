@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use Validator;
 use Input;
 use App\Pegawai;
@@ -22,7 +22,7 @@ use RegistersUsers;
  public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('auth:HRD');
+        $this->middleware('HRD');
     }
     public function index()
     {
@@ -90,33 +90,7 @@ use RegistersUsers;
      */
     public function show($id)
     {
-
-                $eda=['nip'=>'required|unique:pegawai',
-              'id_user'=>'required',
-              'id_jabatan'=>'required',
-              'poto'=>'required',
-              'id_golongan'=>'required',
-              'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'permission' => 'required|max:255',
-            'password' => 'required|min:6|confirmed'];
-        $koy=['nip.required'=>'Data Tidak Boleh Kosong',
-              'nip.unique'=>'Data Tidak Boleh Sarua',
-              'id_user.required'=>'Data Tidak Boleh Kosong',
-              'id_golongan.required'=>'Data Tidak Boleh Kosong',
-              'poto.required'=>'Data Tidak Boleh Kosong',
-              'id_jabatan.required'=>'Data Tidak Boleh Kosong',
-              'name.required'=>'Data Tidak Boleh Kosong',
-              'email.required'=>'Data Tidak Boleh Kosong',
-              'permission.required'=>'Data Tidak Boleh Kosong',
-              'password.required'=>'Data Tidak Boleh Kosong'];
-      $edakoy=Validator::make(Input::all(),$eda,$koy);
-        if ($edakoy->fails()) {
-            return redirect('pegawai/create')
-                             ->withErrors($edakoy)
-                             ->withInput();
-        }
-    }
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -141,25 +115,69 @@ use RegistersUsers;
      */
     public function update(Request $request, $id)
     {
-        $update = Pegawai::where('id', $id)->first();
-        $update->nip = $request['nip'];
-        $update->id_golongan = $request['id_golongan'];
-        $update->id_jabatan = $request['id_jabatan'];
+      $old_pegawai = Pegawai::where('id', $id)->first();
+       $old_email = User::where('id', $old_pegawai->id_user)->first()->email;
+       $data = Request::all();
+       $validati = ([
+           'name' => 'required|max:255',
+           'email' => 'required|email|max:255|unique:users',
+           'nip'=>'required|unique:pegawai',
+           'id_jabatan' => 'required',
+           'id_golongan' => 'required',
+           'poto' => 'required',
+           ]);
+       if ($old_email==$data['email']) 
+       {
+           $validati['email'] = '';
+           $data['email'] = $old_email;
+       }
+       if (Input::file() == null)
+       {
+           $validati['poto'] = '';
+       }
+       if ($data['nip']==$old_pegawai['nip'])
+       {
+           $validati['nip'] = '';
+       }
+       else
+       {
+           $validati['nip'] = 'required|unique:pegawai';
+       }
 
-        if($request->file('poto') == "")
-        {
-            $update->poto = $update->poto;
-        } 
-        else
-        {
-            $file       = $request->file('poto');
-            $fileName   = $file->getClientOriginalName();
-            $request->file('poto')->move("image/", $fileName);
-            $update->poto = $fileName;
-        }
-        
-        $update->update();
-        return redirect()->to('/pegawai');
+       $validation = Validator::make(Request::all(), $validati);
+
+       if ($validation->fails()) {
+           return redirect('pegawai/'.$id.'/edit')->withErrors($validation)->withInput();
+       }
+
+       $user = User::where('id', $old_pegawai->id_user)->first()->update([
+           'name' => $data['name'],
+           'email' => $data['email'],
+           ]);
+       $user = User::where('id', $old_pegawai->id_user)->first();
+       
+
+       if (Input::file()==null)
+       {
+           $data['poto'] = $old_pegawai->poto;
+
+       }
+       else
+       {
+           $file = Input::file('poto');
+           $destination_path = public_path().'/assets/image';
+           $filename = $user->name.'_'.$file->getClientOriginalName();
+           $uploadSuccess = $file->move($destination_path,$filename);
+           $data['poto'] = $filename;
+       }
+
+       pegawai::where('id', $id)->first()->update([
+           'nip' => $data['nip'],
+           'id_jabatan' => $data['id_jabatan'],
+           'id_golongan' => $data['id_golongan'],
+           'poto' => $data['poto'],
+           ]);
+       return redirect('pegawai');
     }
 
     /**

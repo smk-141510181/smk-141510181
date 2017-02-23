@@ -33,7 +33,7 @@
 					<input name="_method" type="hidden"  value="DELETE">
 					<input  name="_token" type="hidden" value="{{csrf_token()}}">
 					<a href="{{route('jabatan.edit',$a->id)}}" type="submit" button type="button" class="btn btn-flat yellow darken-3 waves-effect waves-light white-text">Edit</a>
-					<input onclick="return confirm('Yakin Hapus ')" type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-text" value="Hapus">
+					<input type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-text" value="Hapus">
 				</td>
 			</tr>
 			@endforeach

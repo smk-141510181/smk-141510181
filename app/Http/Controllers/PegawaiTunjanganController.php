@@ -140,6 +140,7 @@ class PegawaiTunjanganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tunjanganp=PegawaiTunjangan::find($id)->delete();
+        return redirect('tunjanganpegawai');
     }
 }

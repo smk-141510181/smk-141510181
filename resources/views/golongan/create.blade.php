@@ -41,7 +41,7 @@
                         
 
                            <div class="form-group{{ $errors->has('besar_uang') ? ' has-error' : '' }}">
-                            <label for="besar_uang" class="col-md-4 control-label">Nama Golongan</label>
+                            <label for="besar_uang" class="col-md-4 control-label">Besar Uang</label>
 
                             <div class="col-md-6">
                                 <input id="besar_uang" type="text" class="form-control" name="besar_uang" value="{{ old('besar_uang') }}">

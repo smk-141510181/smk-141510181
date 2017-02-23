@@ -37,7 +37,7 @@ $(document).ready(function() {
 					<input name="_method" type="hidden"  value="DELETE">
 					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
 					<a href="<?php echo e(route('golongan.edit',$a->id)); ?>" type="submit" button type="button" class="btn btn-flat yellow darken-2 waves-effect waves-light white-text">Edit</a>
-					<input onclick="return confirm('Yakin Hapus ')" type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-textr" value="Hapus">
+					<input type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-textr" value="Hapus">
 				</td>
 			</tr>
 			<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>

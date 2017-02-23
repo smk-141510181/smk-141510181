@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use Validator;
 use App\KategoriLembur;
 use App\Pegawai;
@@ -21,11 +21,19 @@ class LemburPegawaiController extends Controller
     }
     public function index()
     {
+        // $lembur=LemburPegawai::selectRaw("sum(pegawainulembur.jumlah_jam) as jumlah_jam,
+        //                                       pegawainulembur.id_lembur as id_lembur,
+        //                                       pegawainulembur.id_pegawai as id_pegawai")->GroupBy('id_lembur','id_pegawai')->get();
+         $lembur=LemburPegawai::all();
+        return view('lembur.index',compact('lembur'));
+        //dd($lembur);
+    }    public function index1()
+    {
         $lembur=LemburPegawai::selectRaw("sum(pegawainulembur.jumlah_jam) as jumlah_jam,
                                               pegawainulembur.id_lembur as id_lembur,
                                               pegawainulembur.id_pegawai as id_pegawai")->GroupBy('id_lembur','id_pegawai')->get();
          // $lembur=LemburPegawai::all();
-        return view('lembur.index',compact('lembur'));
+        return view('lembur.detail',compact('lembur'));
         //dd($lembur);
     }
     /**
@@ -55,8 +63,7 @@ class LemburPegawaiController extends Controller
     public function store(Request $request)
     {
         $anti=['id_pegawai'=>'required','jumlah_jam'=>'required|numeric'];
-        $mage=[
-               'id_pegawai.required'=>'Data Tidak Boleh Kosong',
+        $mage=[ 'id_pegawai.required'=>'Data Tidak Boleh Kosong',
                'jumlah_jam.required'=>'Data Tidak Boleh Kosong',
                'jumlah_jam.numeric'=>'Harus Di input Dengan Angka']; 
         $axe=Validator::make(Input::all(),$anti,$mage);
@@ -97,7 +104,10 @@ class LemburPegawaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pegawai=Pegawai::all();
+        $kategori=KategoriLembur::all();
+        $lembur=LemburPegawai::find($id);
+        return view('lembur.edit',compact('lembur','pegawai','kategori'));
     }
 
     /**
@@ -109,7 +119,23 @@ class LemburPegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $roles=['jumlah_jam'=>'required|numeric',
+        ];
+        
+        $sms=[
+            'jumlah_jam.required'=>'jangan kosong',
+            'jumlah_jam.numeric'=>'harus angka',
+        ];
+        $validasi=Validator::make(Input::all(),$roles,$sms);
+        if($validasi->fails()){
+            return redirect()->back()
+                    ->WithErrors($validasi)
+                    ->WithInput();
+        }
+        $update=Request::all();
+        $lembur=LemburPegawai::find($id);
+        $lembur->update($update);
+        return redirect('lembur');
     }
 
     /**
@@ -120,6 +146,7 @@ class LemburPegawaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lembur=LemburPegawai::find($id)->delete();
+        return redirect('lembur');
     }
 }

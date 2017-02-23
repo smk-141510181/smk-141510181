@@ -1,11 +1,12 @@
 @extends('layouts.index')
 
 @section('content')
+<br>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Buat Data Kategori Lembur</div>
+                <div class="panel-heading">Buat Data Penggajian</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/penggajian') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -22,16 +23,19 @@
                                     </span>
                                     <div>
                                         @if(isset($error))
-                                            Check Lagi Gaji Sudah Ada
+                                            HRD sudah Melakukan Penggajian Bulan Ini 
                                         @endif
                                     </div>
                             </div>
-
-                        <div class="form-group">
+<br>
+<br>
+                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                            <br>
+                            <body align="left">
                                 <button type="submit" class="btn btn-primary">
                                     Buat Data
-                                </button>
+                                </button></body>
                             </div>
                         </div>
                     </form>

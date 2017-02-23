@@ -42,6 +42,39 @@
                                     </span>
                                 <?php endif; ?>
     </div>
+    <div class="form-group">
+    <?php echo Form::label('Name', 'Name:'); ?>
+
+                                <input id="name" type="text" class="form-control" name="name" value="<?php echo e($pegawai->User->name); ?>">
+
+                                <?php if($errors->has('name')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('name')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+            </div>
+            <div class="form-group">
+    <?php echo Form::label('Email', 'Email:'); ?>
+
+                                <input id="email" type="email" class="form-control" name="email" value="<?php echo e($pegawai->User->email); ?>">
+
+                                <?php if($errors->has('email')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('email')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+            </div>
+    <div class="form-group">
+                                <?php echo Form::label('Permission', 'Permission:'); ?>
+
+                                <input id="permission" type="text" class="form-control" name="permission" value="<?php echo e($pegawai->User->permission); ?>">
+
+                                <?php if($errors->has('email')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('email')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+            </div>
     <div class="form-group <?php echo e($errors->has('id_jabatan') ? ' has-error' : ''); ?>">
         <?php echo Form::label('Kode Jabatan', 'Kode Jabatan:'); ?>
 
@@ -75,7 +108,7 @@
        
     
     <div class="form-group <?php echo e($errors->has('poto') ? ' has-error' : ''); ?>">
-        <?php echo Form::label('Foto', 'Besar Tunjangan:'); ?>
+        <?php echo Form::label('Foto', 'Foto:'); ?>
 
         <?php echo Form::file('poto',null,['class'=>'form-control']); ?>
 

@@ -43,7 +43,7 @@
                                 <?php endif; ?>
     </div>
     <div class="form-group">
-        <?php echo Form::submit('Update', ['class' => 'btn btn-primary']); ?>
+        <?php echo Form::submit('update', ['class' => 'btn btn-primary']); ?>
 
     </div>
     </div>

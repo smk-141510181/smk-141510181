@@ -15,7 +15,7 @@ class CreatePegawainulembur extends Migration
     {
         Schema::create('pegawainulembur', function (Blueprint $table) {
             $table->increments('id');
-             $table->integer('id_lembur')->unique()->unsigned();
+             $table->integer('id_lembur')->unsigned();
             $table->foreign('id_lembur')->references('id')->on('kategorilembur')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('id_pegawai')->unsigned();
             $table->foreign('id_pegawai')->references('id')->on('pegawai')->onDelete('cascade')->onUpdate('cascade');

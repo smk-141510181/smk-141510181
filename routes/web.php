@@ -27,6 +27,7 @@ Route::resource('/tunjanganpegawai','PegawaiTunjanganController');
 Route::get('/createerror1','LemburPegawaiController@error');
 Route::get('/createerror','PegawaiTunjanganController@createerror');
 Route::get('/editerror','PegawaiTunjanganController@editerror');
+Route::get('/index1','LemburPegawaiController@index1');
 Route::resource('/tunjangan','TunjanganController');
 Route::get('pageAksesKhusus', function(){
 	return view('pageAksesKhusus');

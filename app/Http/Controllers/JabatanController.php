@@ -133,6 +133,10 @@ class JabatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hapus = Jabatan::findOrFail($id);
+
+    $hapus->delete();
+
+    return redirect()->route('jabatan.index');
     }
 }

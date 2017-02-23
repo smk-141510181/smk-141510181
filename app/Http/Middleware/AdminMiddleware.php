@@ -15,11 +15,6 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check()&&$request->user()->permission=='HRD') {
-           
-        return redirect()->guest('/pageAksesKhusus');
-        }
-
-            return $next($request);
+                return $next($request);
     }
 }

@@ -38,7 +38,7 @@ $(document).ready(function() {
 					<input name="_method" type="hidden"  value="DELETE">
 					<input  name="_token" type="hidden" value="{{csrf_token()}}">
 					<a href="{{route('golongan.edit',$a->id)}}" type="submit" button type="button" class="btn btn-flat yellow darken-2 waves-effect waves-light white-text">Edit</a>
-					<input onclick="return confirm('Yakin Hapus ')" type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-textr" value="Hapus">
+					<input type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-textr" value="Hapus">
 				</td>
 			</tr>
 			@endforeach

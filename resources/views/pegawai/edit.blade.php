@@ -39,6 +39,36 @@
                                     </span>
                                 @endif
     </div>
+    <div class="form-group">
+    {!! Form::label('Name', 'Name:') !!}
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $pegawai->User->name }}">
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+            </div>
+            <div class="form-group">
+    {!! Form::label('Email', 'Email:') !!}
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $pegawai->User->email }}">
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+            </div>
+    <div class="form-group">
+                                {!! Form::label('Permission', 'Permission:') !!}
+                                <input id="permission" type="text" class="form-control" name="permission" value="{{ $pegawai->User->permission }}">
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+            </div>
     <div class="form-group {{ $errors->has('id_jabatan') ? ' has-error' : '' }}">
         {!! Form::label('Kode Jabatan', 'Kode Jabatan:') !!}
         <select  name="id_jabatan" class="form-control">
@@ -70,7 +100,7 @@
        
     
     <div class="form-group {{ $errors->has('poto') ? ' has-error' : '' }}">
-        {!! Form::label('Foto', 'Besar Tunjangan:') !!}
+        {!! Form::label('Foto', 'Foto:') !!}
         {!! Form::file('poto',null,['class'=>'form-control']) !!}
         @if ($errors->has('poto'))
                                     <span class="help-block">
