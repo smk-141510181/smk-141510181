@@ -28,14 +28,17 @@
 			<td>{{$id++}}</td>
 			<td>{{$a->KategoriLembur->kode_lembur}}</td>
 			<td>{{$a->Pegawai->User->name}}</td>
-			<td>{{$a->jumlah_jam}}</td>
+			<td>{{$a->KategoriLembur->besar_uang}} x {{$a->jumlah_jam}}</td>
 			<td>{{$a->KategoriLembur->besar_uang*$a->jumlah_jam}} / Hari </td>			
 				<td>
-					<form method="POST" action="{{route('lembur.destroy',$a->id)}}" accept-charset="UTF-8">
-					<input name="_method" type="hidden"  value="DELETE">
+					
 					<input  name="_token" type="hidden" value="{{csrf_token()}}">
 					<a href="{{route('lembur.edit',$a->id)}}" class='btn btn-warning'> Edit </a>
-					<input type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-text" value="Hapus"
+					<a data-toggle="modal" href="#delete{{ $a->id }}" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+                                  @include('modals.delete', [
+                                    'url' => route('kategorilembur.destroy', $a->id),
+                                    'model' => $a
+                                  ])
 				</td>
 			</tr>
 			@endforeach

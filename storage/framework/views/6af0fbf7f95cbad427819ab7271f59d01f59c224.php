@@ -28,11 +28,14 @@
 			<td><?php echo e($a->nama_jabatan); ?></td>
 			<td>Rp.<?php echo e($a->besar_uang); ?></td>			
 				<td>
-					<form method="POST" action="<?php echo e(route('jabatan.destroy',$a->id)); ?>" accept-charset="UTF-8">
-					<input name="_method" type="hidden"  value="DELETE">
+			
 					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
 					<a href="<?php echo e(route('jabatan.edit',$a->id)); ?>" type="submit" button type="button" class="btn btn-flat yellow darken-3 waves-effect waves-light white-text">Edit</a>
-					<input type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-text" value="Hapus">
+					<a data-toggle="modal" href="#delete<?php echo e($a->id); ?>" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+                                  <?php echo $__env->make('modals.delete', [
+                                    'url' => route('golongan.destroy', $a->id),
+                                    'model' => $a
+                                  ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 				</td>
 			</tr>
 			<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>

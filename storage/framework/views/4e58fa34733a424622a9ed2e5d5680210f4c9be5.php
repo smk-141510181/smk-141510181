@@ -15,12 +15,12 @@
 		<?php $__currentLoopData = $penggajian; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $a): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
 		<tr>
 		<h1><center>Penggajian Karyawan <?php echo e($a->PegawaiTunjangan->Pegawai->user->name); ?></h1>
-					<center><img src="/assets/image/<?php echo e($a->PegawaiTunjangan->Pegawai->poto); ?>" height="spx" width="200px"></center>
+					<center><img src="/assets/image/<?php echo e($a->PegawaiTunjangan->Pegawai->poto); ?>" height="spx" width="200px" class="img-circle"></center>
 			<center><h2>Besar Tunjangan Anda Adalah <?php echo e($a->PegawaiTunjangan->Tunjangan->besar_tunjangan); ?><br> Sudah Melakukan Lembur Sebanyak <?php echo e($a->jumlah_jam_lembur); ?> Jam <br>Total Jumlah Uang Lembur Anda Adalah <?php echo e($a->jumlah_uang_lembur); ?><br> Gaji Pokok = Jabatan Anda + Golongan Jadi Total Gaji Pokok Anda Adalah Rp.<?php echo e($a->gaji_pokok); ?> <br> Total Gaji Uang Lembur + Gaji Pokok + Besar Tunjangan Adalah Rp.<?php echo e($a->gaji_total); ?><br> <?php if($a->tanggal_pengambilan == ""&&$a->status_pengambilan == "0"): ?>
                                     <br>
                                     Gaji Belum Diambil 
                                     <div >
-                                    <a class="btn btn-primary " href="<?php echo e(route('penggajian.edit',$a->id)); ?>">Ubah Pengambilan</a>
+                                    <a class="btn btn-primary " href="<?php echo e(route('penggajian.edit',$a->id)); ?>">Ambil Gaji</a>
                                     </div>
                                     <?php elseif($a->tanggal_pengambilan == ""||$a->status_pengambilan == "0"): ?>
                                         Gaji Belum Diambil
@@ -38,13 +38,18 @@
 			
 			</center>
 			
-			<br>
+			
 			                          
 				<td>
 				<center>
-					<form method="POST" action="<?php echo e(route('penggajian.destroy',$a->id)); ?>" accept-charset="UTF-8">
+					
 					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
-					<input type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-text" value="Hapus">
+					<a data-toggle="modal" href="#delete<?php echo e($a->id); ?>" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+                                  <?php echo $__env->make('modals.delete', [
+                                    'url' => route('penggajian.destroy', $a->id),
+                                    'model' => $a
+                                  ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                  <br><br><br><br><br><br>
 				</center>
 				</td>
 			</tr>

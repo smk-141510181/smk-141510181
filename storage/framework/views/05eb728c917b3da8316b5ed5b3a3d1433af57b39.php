@@ -19,7 +19,7 @@ $(document).ready(function() {
 			<th>Kode Golongan</th>
 			<th>Nama Golongan</th>
 			<th>Besar Uang</th>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</td>
+			<td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</td>
 		</tr> 
 	</thead>
 	<tbody>
@@ -33,11 +33,16 @@ $(document).ready(function() {
 			<td><?php echo e($a->nama_golongan); ?></td>
 			<td>Rp.<?php echo e($a->besar_uang); ?></td>			
 				<td>
-					<form method="POST" action="<?php echo e(route('golongan.destroy',$a->id)); ?>" accept-charset="UTF-8">
-					<input name="_method" type="hidden"  value="DELETE">
+					
 					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
 					<a href="<?php echo e(route('golongan.edit',$a->id)); ?>" type="submit" button type="button" class="btn btn-flat yellow darken-2 waves-effect waves-light white-text">Edit</a>
-					<input type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-textr" value="Hapus">
+					 
+                                  <a data-toggle="modal" href="#delete<?php echo e($a->id); ?>" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+                                  <?php echo $__env->make('modals.delete', [
+                                    'url' => route('golongan.destroy', $a->id),
+                                    'model' => $a
+                                  ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                
 				</td>
 			</tr>
 			<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>

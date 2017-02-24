@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Request;
 use Validator;
 use Input;
@@ -115,8 +116,8 @@ public function __construct()
      */
     public function update(Request $request, $id)
     {
-      $old_pegawai = Pegawai::where('id', $id)->first();
-       $old_email = User::where('id', $old_pegawai->id_user)->first()->email;
+      $peg = Pegawai::where('id', $id)->first();
+       $mail = User::where('id', $peg->id_user)->first()->email;
        $data = Request::all();
        $validati = ([
            'name' => 'required|max:255',
@@ -126,16 +127,16 @@ public function __construct()
            'id_golongan' => 'required',
            'poto' => 'required',
            ]);
-       if ($old_email==$data['email']) 
+       if ($mail==$data['email']) 
        {
            $validati['email'] = '';
-           $data['email'] = $old_email;
+           $data['email'] = $mail;
        }
        if (Input::file() == null)
        {
            $validati['poto'] = '';
        }
-       if ($data['nip']==$old_pegawai['nip'])
+       if ($data['nip']==$peg['nip'])
        {
            $validati['nip'] = '';
        }
@@ -150,16 +151,16 @@ public function __construct()
            return redirect('pegawai/'.$id.'/edit')->withErrors($validation)->withInput();
        }
 
-       $user = User::where('id', $old_pegawai->id_user)->first()->update([
+       $user = User::where('id', $peg->id_user)->first()->update([
            'name' => $data['name'],
            'email' => $data['email'],
            ]);
-       $user = User::where('id', $old_pegawai->id_user)->first();
+       $user = User::where('id', $peg->id_user)->first();
        
 
        if (Input::file()==null)
        {
-           $data['poto'] = $old_pegawai->poto;
+           $data['poto'] = $peg->poto;
 
        }
        else

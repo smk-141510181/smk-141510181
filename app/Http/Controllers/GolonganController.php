@@ -138,10 +138,7 @@ class GolonganController extends Controller
      */
     public function destroy($id)
     {
-        $hapus = Golongan::findOrFail($id);
-
-    $hapus->delete();
-
-    return redirect()->route('golongan.index');
+    Golongan::find($id)->delete();
+    return Redirect('golongan');
     }
 }

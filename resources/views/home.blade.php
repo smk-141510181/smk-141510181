@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-<body>
+<body background="HD.jpg" >
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -10,6 +10,7 @@
        <style>
    h1 {
      text-shadow: 5px -7px 7px #103636;
+    }
 
 </style><h1 class="satu">Penggajian Karyawan</h1></div></center>
 

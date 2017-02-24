@@ -169,6 +169,7 @@ public function __construct()
      */
     public function destroy($id)
     {
-        //
+        Tunjangan::find($id)->delete();
+    return Redirect('kategorilembur');
     }
 }

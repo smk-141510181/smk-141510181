@@ -12,9 +12,11 @@
 		<tr>
 			<th>No</th>
 			<th>Kode Lembur</th>
+			<th>Foto</th>
 			<th>Nama Pegawai</th>
 			<th>Jumlah Jam</th>
 			<th>Jumlah Uang Lembur</th>
+			
 		</tr> 
 	</thead>
 	<tbody>
@@ -26,8 +28,10 @@
 			<td>{{$id++}}</td>
 			<td>{{$a->KategoriLembur->kode_lembur}}</td>
 			<td>{{$a->Pegawai->User->name}}</td>
-			<td>{{$a->jumlah_jam}}</td>
-			<td>{{$a->KategoriLembur->besar_uang*$a->jumlah_jam}} / Bulan </td>			
+			<td><img src="/assets/image/{{ $a->Pegawai->poto }}" height="spx" width="100px" class="img-circle"></td>
+			<td>{{$a->KategoriLembur->besar_uang}} x {{$a->jumlah_jam}}</td>
+			<td>{{$a->KategoriLembur->besar_uang*$a->jumlah_jam}} / Bulan </td>	
+
 			</tr>
 			@endforeach
 		

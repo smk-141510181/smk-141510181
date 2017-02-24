@@ -42,15 +42,18 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     </li>                  
-                     </a><img src="/assets/image/<?php echo e($a->poto); ?>" height="spx" width="500px">
+                     </a><img src="/assets/image/<?php echo e($a->poto); ?>" height="spx" width="300px">
             </td>
 			
 			<td>
-					<form method="POST" action="<?php echo e(route('pegawai.destroy',$a->id)); ?>" accept-charset="UTF-8">
-					<input name="_method" type="hidden"  value="DELETE">
-					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
+					
 					<a href="<?php echo e(route('pegawai.edit',$a->id)); ?>" type="submit" button type="button" class="btn btn-flat yellow darken-2 waves-effect waves-light white-text">Edit</a>
-					<input onclick="return confirm('Yakin Hapus ')" type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-text" value="Hapus">
+					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
+					<a data-toggle="modal" href="#delete<?php echo e($a->id); ?>" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+                                  <?php echo $__env->make('modals.delete', [
+                                    'url' => route('pegawai.destroy', $a->id),
+                                    'model' => $a
+                                  ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 				
 			
 			<?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>

@@ -160,6 +160,7 @@ public function __construct()
      */
     public function destroy($id)
     {
-        //
+        KategoriLembur::find($id)->delete();
+    return Redirect('kategorilembur');
     }
 }

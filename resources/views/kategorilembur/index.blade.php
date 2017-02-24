@@ -33,11 +33,14 @@
 			
 			
 				<td>
-					<form method="POST" action="{{route('kategorilembur.destroy',$a->id)}}" accept-charset="UTF-8">
-					<input name="_method" type="hidden"  value="DELETE">
+				
 					<input  name="_token" type="hidden" value="{{csrf_token()}}">
 					<a href="{{route('kategorilembur.edit',$a->id)}}" type="submit" button type="button" class="btn btn-flat yellow darken-2 waves-effect waves-light white-text">Edit</a>
-					<input onclick="return confirm('Yakin Hapus ')" type="submit" button type="button" class="btn btn-flat red darken-10 waves-effect waves-light white-textr" value="Hapus">
+					<a data-toggle="modal" href="#delete{{ $a->id }}" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+                                  @include('modals.delete', [
+                                    'url' => route('kategorilembur.destroy', $a->id),
+                                    'model' => $a
+                                  ])
 				</td>
 			</tr>
 			@endforeach

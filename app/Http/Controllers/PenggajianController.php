@@ -28,6 +28,7 @@ public function __construct()
     }
     public function index()
     {
+        
         $penggajian=Penggajian::all();
         // dd($penggajian);
          return view('penggajian.index',compact('penggajian'));
@@ -85,7 +86,7 @@ public function __construct()
             $penggajian->jumlah_jam_lembur=$nol;
             $penggajian->jumlah_uang_lembur=$nol ;
             $penggajian->gaji_pokok=$wherejabatan->besar_uang+$wheregolongan->besar_uang;
-            $penggajian->gaji_total=($wheretunjangan->besar_uang)+($wherejabatan->besar_uang+$wheregolongan->besar_uang);
+            $penggajian->gaji_total=($wheretunjangan->besar_uang)+($wherejabatan->besar_uang+$wheregolongan->besar_uang)+($wheretunjangan->besar_tunjangan);
         $penggajian->id_tunjangan_pegawai=Input::get('id_tunjangan_pegawai');
         $penggajian->petugas_penerima=auth::user()->name ;
         $penggajian->save();
@@ -95,7 +96,7 @@ public function __construct()
             $penggajian->jumlah_jam_lembur=$nol;
             $penggajian->jumlah_uang_lembur=$nol ;
             $penggajian->gaji_pokok=$wherejabatan->besar_uang+$wheregolongan->besar_uang;
-            $penggajian->gaji_total=($wheretunjangan->besar_uang)+($wherejabatan->besar_uang+$wheregolongan->besar_uang);
+            $penggajian->gaji_total=($wheretunjangan->besar_uang)+($wherejabatan->besar_uang+$wheregolongan->besar_uang)+($wheretunjangan->besar_tunjangan);
         $penggajian->id_tunjangan_pegawai=Input::get('id_tunjangan_pegawai');
         $penggajian->petugas_penerima=auth::user()->name ;
         $penggajian->save();
