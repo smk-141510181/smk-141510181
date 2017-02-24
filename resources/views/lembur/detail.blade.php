@@ -28,7 +28,7 @@
 			<td>{{$id++}}</td>
 			<td>{{$a->KategoriLembur->kode_lembur}}</td>
 			<td>{{$a->Pegawai->User->name}}</td>
-			<td><img src="/assets/image/{{ $a->Pegawai->photo }}" height="spx" width="100px" class="img-circle"></td>
+			<td><img src="/assets/image/{{ $a->Pegawai->photo }}" height="spx" width="100px" ></td>
 			<td>{{$a->KategoriLembur->besar_uang}} x {{$a->jumlah_jam}}</td>
 			<td>{{$a->KategoriLembur->besar_uang*$a->jumlah_jam}} / Bulan </td>	
 
