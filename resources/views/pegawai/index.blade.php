@@ -43,7 +43,7 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     </li>                  
-                     </a><img src="/assets/image/{{ $a->poto }}" height="spx" width="300px">
+                     </a><img src="/assets/image/{{ $a->poto }}" height="spx" width="200px">
             </td>
 			
 			<td>

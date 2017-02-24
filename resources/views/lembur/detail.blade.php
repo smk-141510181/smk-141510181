@@ -12,8 +12,8 @@
 		<tr>
 			<th>No</th>
 			<th>Kode Lembur</th>
-			<th>Foto</th>
 			<th>Nama Pegawai</th>
+			<th>Foto</th>
 			<th>Jumlah Jam</th>
 			<th>Jumlah Uang Lembur</th>
 			

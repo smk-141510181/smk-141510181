@@ -21,12 +21,12 @@
                                     <br>
                                     Gaji Belum Diambil 
                                     <div >
-                                    <a class="btn btn-primary " href="{{route('penggajian.edit',$a->id)}}">Ambil Gaji</a>
+                                    <a class="btn btn-flat blue darken-1 waves-effect waves-light white-text" href="{{route('penggajian.edit',$a->id)}}">Ambil Gaji</a>
                                     </div>
                                     @elseif($a->tanggal_pengambilan == ""||$a->status_pengambilan == "0")
                                         Gaji Belum Diambil
                                         <div >
-                                        <a class="btn btn-primary  " href="{{route('penggajian.edit',$a->id)}}">Ambil Gaji</a><input name="_method" type="hidden"  value="DELETE">
+                                        <a class="btn btn-flat blue darken-1 waves-effect waves-light white-text" href="{{route('penggajian.edit',$a->id)}}">Ambil Gaji</a><input name="_method" type="hidden"  value="DELETE">
                                         <br>
                                     </div>
                                     @else
@@ -43,7 +43,7 @@
 				<center>
 					
 					<input  name="_token" type="hidden" value="{{csrf_token()}}">
-					<a data-toggle="modal" href="#delete{{ $a->id }}" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+					<a data-toggle="modal" href="#delete{{ $a->id }}" class="btn btn-flat red waves-effect waves-light white-text" title="Delete" data-toggle="tooltip"></i>Hapus</a>
                                   @include('modals.delete', [
                                     'url' => route('penggajian.destroy', $a->id),
                                     'model' => $a

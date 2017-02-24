@@ -20,12 +20,12 @@
                                     <br>
                                     Gaji Belum Diambil 
                                     <div >
-                                    <a class="btn btn-primary " href="<?php echo e(route('penggajian.edit',$a->id)); ?>">Ambil Gaji</a>
+                                    <a class="btn btn-flat blue darken-1 waves-effect waves-light white-text" href="<?php echo e(route('penggajian.edit',$a->id)); ?>">Ambil Gaji</a>
                                     </div>
                                     <?php elseif($a->tanggal_pengambilan == ""||$a->status_pengambilan == "0"): ?>
                                         Gaji Belum Diambil
                                         <div >
-                                        <a class="btn btn-primary  " href="<?php echo e(route('penggajian.edit',$a->id)); ?>">Ambil Gaji</a><input name="_method" type="hidden"  value="DELETE">
+                                        <a class="btn btn-flat blue darken-1 waves-effect waves-light white-text" href="<?php echo e(route('penggajian.edit',$a->id)); ?>">Ambil Gaji</a><input name="_method" type="hidden"  value="DELETE">
                                         <br>
                                     </div>
                                     <?php else: ?>
@@ -44,7 +44,7 @@
 				<center>
 					
 					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
-					<a data-toggle="modal" href="#delete<?php echo e($a->id); ?>" class="btn btn-danger" title="Delete" data-toggle="tooltip"></i>Hapus</a>
+					<a data-toggle="modal" href="#delete<?php echo e($a->id); ?>" class="btn btn-flat red waves-effect waves-light white-text" title="Delete" data-toggle="tooltip"></i>Hapus</a>
                                   <?php echo $__env->make('modals.delete', [
                                     'url' => route('penggajian.destroy', $a->id),
                                     'model' => $a

@@ -2,17 +2,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-	<script type="text/javascript">
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>		
 				
 <div class="card-panel black darken-3 white-text"><center><h3>Data Golongan</h3></div></center>
 <div align="left"> <a href="<?php echo e(route('golongan.create')); ?>" class="btn btn-flat black darken-4 waves-effect waves-light white-text glyphicon glyphicon-plus"></a>
 </div>
 <br>
-<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table  class="table table-striped table-bordered table-hover" >
 	<thead>
 		<tr>
 			<th>No</th>

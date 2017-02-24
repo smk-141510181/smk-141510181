@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-<body background="HD.jpg" >
+<body>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -7,10 +7,10 @@
                <center> <div class="panel-heading"><font face="Rockwell" size="5" color="black">
        <style>
    h1 {
-     text-shadow: 5px -7px 7px #103636;
+     text-shadow: 5px -7px 7px black;
     }
 
-</style><h1 class="satu">Penggajian Karyawan</h1></div></center>
+</style><h1>Penggajian Karyawan</h1></div></center>
 
                 
                 <center>

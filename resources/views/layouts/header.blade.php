@@ -1,4 +1,4 @@
-<nav class="black" role="navigation">
+<nav class="black" role="navigation" >
     <div class="nav-wrapper container"><a id="logo-container" href="/home" class="brand-logo">Menu Utama</a>
 
           <!-- Right Side Of Navbar -->
