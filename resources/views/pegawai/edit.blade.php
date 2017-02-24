@@ -99,12 +99,12 @@
     </div>
        
     
-    <div class="form-group {{ $errors->has('poto') ? ' has-error' : '' }}">
+    <div class="form-group {{ $errors->has('photo') ? ' has-error' : '' }}">
         {!! Form::label('Foto', 'Foto:') !!}
-        {!! Form::file('poto',null,['class'=>'form-control']) !!}
-        @if ($errors->has('poto'))
+        {!! Form::file('photo',null,['class'=>'form-control']) !!}
+        @if ($errors->has('photo'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('poto') }}</strong>
+                                        <strong>{{ $errors->first('photo') }}</strong>
                                     </span>
                                 @endif
     </div>

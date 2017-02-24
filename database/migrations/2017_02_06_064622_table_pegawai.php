@@ -35,7 +35,7 @@ class TablePegawai extends Migration
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->timestamps();
-            $table->string('poto');
+            $table->string('photo');
         });
     }
 

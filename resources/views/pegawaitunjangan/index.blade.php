@@ -28,7 +28,7 @@
 			<td>{{$id++}}</td>
 			<td>{{$a->Tunjangan->kode_tunjangan}}</td>
 			<td>{{$a->Pegawai->User->name}}</td>			
-			<td><img src="/assets/image/{{ $a->Pegawai->poto }}" height="spx" width="100px" class="img-circle"></td>
+			<td><img src="/assets/image/{{ $a->Pegawai->photo }}" height="spx" width="100px" class="img-circle"></td>
 				
 				<td>
 					<input  name="_token" type="hidden" value="{{csrf_token()}}">

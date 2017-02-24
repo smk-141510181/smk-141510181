@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use Request;
+use Illuminate\Http\Request;
 use Validator;
 use Input;
 use App\Pegawai;
@@ -55,17 +55,17 @@ public function __construct()
     {
      
 
-         $this->validate($request,['name'=>'required','email'=>'required|unique:users','permission'=>'required','password'=>'required','nip'=>'required|numeric','id_golongan'=>'required','id_jabatan'=>'required','poto'=>'required']);
+         $this->validate($request,['name'=>'required','email'=>'required|unique:users','permission'=>'required','password'=>'required','nip'=>'required|numeric','id_golongan'=>'required','id_jabatan'=>'required','photo'=>'required']);
 
         
         
-         $file = Input::File('poto');
+         $file = Input::File('photo');
         $destinationPath = public_path().'/assets/image';
         $filename = $file->getClientOriginalName();
         $uploadSuccess = $file->move($destinationPath, $filename);
 
 
-        if(Input::hasFile('poto')){
+        if(Input::hasFile('photo')){
             $ab=new User;
             $ab->name=Input::get('name');
             $ab->email=Input::get('email');
@@ -77,7 +77,7 @@ public function __construct()
             $a->id_golongan=Input::get('id_golongan');
             $a->id_jabatan=Input::get('id_jabatan');
             $a->id_user=$ab->id;
-            $a->poto=$filename;
+            $a->photo=$filename;
             $a->save();
             return redirect('pegawai');
         }
@@ -125,7 +125,7 @@ public function __construct()
            'nip'=>'required|unique:pegawai',
            'id_jabatan' => 'required',
            'id_golongan' => 'required',
-           'poto' => 'required',
+           'photo' => 'required',
            ]);
        if ($mail==$data['email']) 
        {
@@ -134,7 +134,7 @@ public function __construct()
        }
        if (Input::file() == null)
        {
-           $validati['poto'] = '';
+           $validati['photo'] = '';
        }
        if ($data['nip']==$peg['nip'])
        {
@@ -160,23 +160,23 @@ public function __construct()
 
        if (Input::file()==null)
        {
-           $data['poto'] = $peg->poto;
+           $data['photo'] = $peg->photo;
 
        }
        else
        {
-           $file = Input::file('poto');
+           $file = Input::file('photo');
            $destination_path = public_path().'/assets/image';
            $filename = $user->name.'_'.$file->getClientOriginalName();
            $uploadSuccess = $file->move($destination_path,$filename);
-           $data['poto'] = $filename;
+           $data['photo'] = $filename;
        }
 
        pegawai::where('id', $id)->first()->update([
            'nip' => $data['nip'],
            'id_jabatan' => $data['id_jabatan'],
            'id_golongan' => $data['id_golongan'],
-           'poto' => $data['poto'],
+           'photo' => $data['photo'],
            ]);
        return redirect('pegawai');
     }

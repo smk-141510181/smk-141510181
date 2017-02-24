@@ -125,17 +125,17 @@
                                 @endif
                             </div>
                         </div>
-                                                <div class="form-group{{ $errors->has('poto') ? ' has-error' : '' }}">
+                                                <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Photo</label>
 
                             <div class="col-md-6">
-                                <input id="poto" type="file" class="form-control" name="poto" value="{{ old('poto') }}">
+                                <input id="photo" type="file" class="form-control" name="photo" value="{{ old('photo') }}">
 
                                 
 
-                                @if ($errors->has('poto'))
+                                @if ($errors->has('photo'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('poto') }}</strong>
+                                        <strong>{{ $errors->first('photo') }}</strong>
                                     </span>
                                 @endif
                             </div>

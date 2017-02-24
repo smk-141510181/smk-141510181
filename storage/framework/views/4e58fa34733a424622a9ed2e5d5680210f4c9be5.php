@@ -15,7 +15,7 @@
 		<?php $__currentLoopData = $penggajian; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $a): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
 		<tr>
 		<h1><center>Penggajian Karyawan <?php echo e($a->PegawaiTunjangan->Pegawai->user->name); ?></h1>
-					<center><img src="/assets/image/<?php echo e($a->PegawaiTunjangan->Pegawai->poto); ?>" height="spx" width="200px" class="img-circle"></center>
+					<center><img src="/assets/image/<?php echo e($a->PegawaiTunjangan->Pegawai->photo); ?>" height="spx" width="200px" class="img-circle"></center>
 			<center><h2>Besar Tunjangan Anda Adalah <?php echo e($a->PegawaiTunjangan->Tunjangan->besar_tunjangan); ?><br> Sudah Melakukan Lembur Sebanyak <?php echo e($a->jumlah_jam_lembur); ?> Jam <br>Total Jumlah Uang Lembur Anda Adalah <?php echo e($a->jumlah_uang_lembur); ?><br> Gaji Pokok = Jabatan Anda + Golongan Jadi Total Gaji Pokok Anda Adalah Rp.<?php echo e($a->gaji_pokok); ?> <br> Total Gaji Uang Lembur + Gaji Pokok + Besar Tunjangan Adalah Rp.<?php echo e($a->gaji_total); ?><br> <?php if($a->tanggal_pengambilan == ""&&$a->status_pengambilan == "0"): ?>
                                     <br>
                                     Gaji Belum Diambil 

@@ -27,7 +27,7 @@
 			<td><?php echo e($id++); ?></td>
 			<td><?php echo e($a->Tunjangan->kode_tunjangan); ?></td>
 			<td><?php echo e($a->Pegawai->User->name); ?></td>			
-			<td><img src="/assets/image/<?php echo e($a->Pegawai->poto); ?>" height="spx" width="100px" class="img-circle"></td>
+			<td><img src="/assets/image/<?php echo e($a->Pegawai->photo); ?>" height="spx" width="100px" class="img-circle"></td>
 				
 				<td>
 					<input  name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
